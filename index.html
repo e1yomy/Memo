@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    <script type="text/javascript">
+        //setTimeout('document.location.reload()',1000);
+    </script>
+    <script type="text/javascript" src="../scripts/script.js" ></script>
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <EMBED SRC="../audio/audio.mp3" AUTOSTART=true LOOP=true VOLUME="80" WIDTH="0" HEIGHT="0">
+<script type="text/javascript">
+    
+</script>
+    </head>
+    <body>
+    
+        
+    <div class="principal">
+    <section id="sec1">
+        <div class="titulo">
+            <div><img ></div>
+            <div style="">
+            <label><h1>Memorama</h1></label>
+            <p>Voltea las tarjetas y encuentra los pares hasta completar el tablero en el menor tiempo posible.</p>
+            </div>
+        </div>
+    </section>
+
+    <input class="boton" type="button" name="inicio" value="Comenzar el juego" onclick="comenzar()" ></input>
+    <section id="sec2">
+        <div class="tablero" id="tablero">
+           
+        </div>
+    </section>
+    <input class="boton" type="button" name="fin" value="Finalizar el juego" onclick="finalizar()">
+    <section id="sec3">
+        <div class="marcadores">
+        <br>
+            <div class="divisor">
+                <h5>Pares</h5>
+                <p id="contador">Conseguidos: </p>                
+            </div>
+            <div class="divisor">
+                <h5>Errores</h5>
+                <p id="fallas">Conteo: </p>
+            </div>
+            <div class="divisor">
+                <h5>Cronometro</h5>
+                <p id="time">Tiempo: </p>
+            </div>
+        </div>
+    </section>
+    
+    </body>
+</html>

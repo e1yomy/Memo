@@ -1,0 +1,105 @@
+<style type="text/css">
+	.principal{
+		
+	}
+	body{
+		background-color: #6b927f;
+		min-width: 280px;
+		background-image: url('../imagenes/fondo.png');
+		background-size:50%;
+	}
+	body div input{
+		width: 60%;
+		padding-bottom: 1%;
+		margin: 0 17%;
+		border-radius: 5px;
+		font-size: 1em;
+		font-weight: bold;
+	}
+	.boton1{
+		background-color: #b1c5a9;
+
+	}
+	.boton2{
+
+		background-color: #94715e;
+	}
+	.titulo img{
+		width: 15%;
+        padding-bottom: 15%;
+        float: left;
+        margin-right: 5%;
+        background: url("../imagenes/0.png");
+        background-size: 100%;
+
+
+	}
+	.titulo h1{
+        font-family: sans-serif;
+        font-size: 4em;
+        
+    }
+    .titulo p{
+        font-family: sans-serif;
+        margin-top: -70px;
+        font-weight: bold;
+        
+    }
+    .titulo p{
+    	margin-top: -15px;
+        font-size: 0.8em;
+    }
+	.titulo{
+    	margin-top: -50px;
+    }
+	.tablero{
+		width: 80%;
+		margin: 0 10%;
+		float:left;
+	}
+	.carta{
+
+		width: 10%;
+		padding-bottom: 10%;
+		float: left;
+		border-radius: 15px;
+		background-image: url("../imagenes/0.png");
+		background-repeat: no-repeat;
+		background-size: 100%;	
+		margin: 1px;
+		//border: 1px solid red;
+		color: red;
+		font-size: 20px;
+		background-color: #e4d9c5;
+	}
+	.carta:hover{
+		background-color:#b1c5a9;
+	}
+
+	.marcadores div{
+		float: left;
+	}
+	.marcadores{
+		width: 90%;
+		margin: 0 9%;
+		
+
+	}
+	.divisor{
+		width: 20%;
+		border-radius: 5px;
+		min-width: 100px;
+		margin: 5px;
+		background-color: #5e363e;
+
+	}
+	.divisor p, .divisor h4{
+		font-family: sans-serif;
+	}
+	.divisor p{
+		font-size: 12px;
+		
+	}
+
+	
+	</style>
