@@ -67,7 +67,7 @@
 		background-repeat: no-repeat;
 		background-size: 100%;	
 		margin: 1px;
-		//border: 1px solid red;
+		//border: 2px solid red;
 		color: red;
 		font-size: 20px;
 		background-color: #e4d9c5;
@@ -81,20 +81,22 @@
 	}
 	.marcadores{
 		width: 90%;
-		margin: 0 9%;
-		
-
+		padding-left: 10%;
 	}
 	.divisor{
+		border: 2px solid white;
 		width: 20%;
 		border-radius: 5px;
 		min-width: 100px;
 		margin: 5px;
 		background-color: #5e363e;
+		margin-left: 5px;
 
 	}
 	.divisor p, .divisor h4{
 		font-family: sans-serif;
+		padding-left: 10px;
+		padding-top: -10px;
 	}
 	.divisor p{
 		font-size: 12px;

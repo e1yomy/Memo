@@ -4,7 +4,7 @@
 	<title>Memorama</title>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<script type="text/javascript">
-		setTimeout('document.location.reload()',5000);
+		//setTimeout('document.location.reload()',1000);
 	</script>
 
 </head>
@@ -57,7 +57,7 @@
 				<p id="errores">Conteo: </p>
 			</div>
 			<div class="divisor">
-				<h4>Cronometro</h4>
+				<h4>Cron&oacute;metro</h4>
 				<p id="crono">Tiempo: </p>
 			</div>
 	</div>
@@ -126,8 +126,8 @@ function cartaclic(id){
 						errores++;
 						function voltear()
 						{
-							document.getElementById("carta"+cartas[0]).style.backgroundImage="url(../imagenes/0.png)";
-							document.getElementById("carta"+cartas[1]).style.backgroundImage="url(../imagenes/0.png)";
+							document.getElementById("carta"+cartas[0]).style.backgroundImage="url(imagenes/0.png)";
+							document.getElementById("carta"+cartas[1]).style.backgroundImage="url(imagenes/0.png)";
 							cartas=[];
 						}
 						setTimeout(voltear,500);
@@ -143,14 +143,14 @@ function creararreglo()	{
 for(cont=0;cont<imagenes.length;cont+=2)
 {	if(cont>=18)
 	{
-		imagenes[cont]="../imagenes/"+(cont+1-18)+".png";
-		imagenes[cont+1]="../imagenes/"+(cont+2-18)+".png";
+		imagenes[cont]="imagenes/"+(cont+1-18)+".png";
+		imagenes[cont+1]="imagenes/"+(cont+2-18)+".png";
 		
 	}
 	else
 	{
-		imagenes[cont]="../imagenes/"+(cont+1)+".png";
-		imagenes[cont+1]="../imagenes/"+(cont+2)+".png";
+		imagenes[cont]="imagenes/"+(cont+1)+".png";
+		imagenes[cont+1]="imagenes/"+(cont+2)+".png";
 	}
 }
 revolver();}
@@ -198,9 +198,9 @@ if(jugando==1)
 	jugando=0;
 	var car=document.getElementByClassName('carta');
 
-	for(i=0;i<car.length-1;i++)
+	//for(i=0;i<car.length-1;i++)
 	{
-		car[i].style.backgroundImage="url(../imagenes/0.png)";
+	//	car[i].style.backgroundImage="url(imagenes/0.png)";
 	}
 
 	volteadas=[];
