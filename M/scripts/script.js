@@ -1,172 +1,189 @@
 <script type="text/javascript">
-	  
-    var arregloL = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R'];
-    var valor_memoria = [];
-    var memoria_carta_ids = [];
-    var virada_carta = 0;
-    var cont1 = 0;
-    var cont = document.getElementById("contador");
-    var f1=0;
-    var fails = document.getElementById("fallas")
-    var startTime = 0
-    var start = 0
-    var end = 0
-    var diff = 0
-    var timerID = 0
-    Array.prototype.revolverCartas = function(){
-        var i = this.length, j, temp;
-        while(--i > 0){
-            j = Math.floor(Math.random() * (i+1));
-            temp = this[j];
-            this[j] = this[i];
-            this[i] = temp;
-        }
-    }
-    var jugando=0;
-    function comenzar(){
-        if(jugando==0)
+var cli=1;
+var carta1;
+var carta2;
+var cartas =[];
+var volteadas=[];
+var jugando=0;
+var imagenes=new Array(36);
+var cont=0;
+var intentos=0;
+var pares=0;
+var errores=0;
+var j=0;
+var i=0;
+var x;
+var existe=0;
+function buscar(id){
+    existe=0;
+    for(i=0;i<volteadas.length;i++)
+    {
+        if(volteadas[i]==id)
         {
-
-            nuevaTabla();
-            cronometroStart();
-            jugando=1;
-            
+            existe=1;
         }
-        else
+    }}
+function cartaclic(id){
+    if(jugando)
+    {
+        buscar(id);
+        if(existe==0)
         {
-            alert("Juego en progreso.");
-        }
-
-    }
-    function finalizar(){
-        if(jugando==1)
-        {
-            detener();
-            jugando=0;
-        }
-        else
-        {
-            alert("No se está jugando.");
-        }
-
-    }
-    function nuevaTabla(){
-
-        document.getElementById('tablero').innerHTML = "";
-        virada_carta = 0;
-        var output = '';
-        var cont1 = 0;
-        arregloL.revolverCartas();
-        for(var i = 0; i < arregloL.length; i++){
-            output += '<div class="carta" id="carta_'+i+'"onclick="mostrarCarta(this,\''+arregloL[i]+'\',cont1)"></div>';
-
-            //for(var i = 0; i < arregloL.length; i++){
-            //output += '<div onclick="mostrarCarta(this,\''+arregloL[i]+'\',cont1)"><p class="carta" id="carta_'+i+'">Z</p></div>';
-        }
-        document.getElementById('tablero').innerHTML = output;
-    } 
-
-    function continuar(){
-        start = new Date()-diff
-        start = new Date(start)
-        cronometro();
-    }
-
-
-    function cronometro(){
-        end = new Date();
-        diff = end - start;
-        diff = new Date(diff);
-        var msec = diff.getMilliseconds();
-        var sec = diff.getSeconds();
-        var min = diff.getMinutes();
-        if (min < 10){
-            min = "0" + min;
-        }
-        if (sec < 10){
-            sec = "0" + sec;
-        }
-        if(msec < 10){
-            msec = "00" +msec;
-        }
-        else if(msec < 100){
-            msec = "0" +msec;
-        }
-        document.getElementById("time").innerHTML = min + ":" + sec + ":" + msec;
-        timerID = setTimeout("cronometro()", 10);
-
-    }
-
-    function cronometroStart(){
-        start = new Date();
-        cronometro()
-    }
-
-    function detener(){
-        clearTimeout(timerID)
-    }
-
-    function resetear(){
-        document.getElementById("time").innerHTML = "00:000"
-    }
-
-
-    function mostrarCarta(carta,valor,cont){ 
-        if(jugando)
-        {
-            var cont = document.getElementById("contador"); 
-             var fails = document.getElementById("fallas");
-            if(carta.innerHTML == "" && valor_memoria.length < 2){
-                //carta.style.background = '#fff';
-                carta.style.background = '#fff';
-                carta.innerHTML = valor;
-                ////aqui
-                carta.style.padding=0 ;
-                ///////////
-                if(valor_memoria.length == 0){
-                    valor_memoria.push(valor);
-                    memoria_carta_ids.push(carta.id);
-                } 
-                else if(valor_memoria.length == 1)
-                {  
-                    valor_memoria.push(valor);
-                    memoria_carta_ids.push(carta.id);
-                    if(valor_memoria[0] == valor_memoria[1]){
-                        virada_carta += 2;
-                        cont1 ++; //CONTADOR PARES
-                        cont.innerHTML=cont1;
-                        //limpia los 2 arreglos
-                        valor_memoria = [];
-                        memoria_carta_ids = [];
-                        //chekea si la mesa entera esta despedida
-                        if( virada_carta == arregloL.length){
-                            alert("Juego finalidado.");
-                            finalizar();
-                        }
-                    } 
-                    else
-                    { 
-                        function virarAtras(){
-                            //las dos cartas se van a virar
-                            f1 ++; //CONTADOR ERRORES
-                            fails.innerHTML=f1; 
-                            var carta_1 = document.getElementById(memoria_carta_ids[0]);
-                            var carta_2 = document.getElementById(memoria_carta_ids[1]);
-                            ///Aquí
-                            carta_1.style.background = 'url(b1.jpg)  repeat ';
-                            carta_1.innerHTML = "";
-                            carta_2.style.background = 'url(b1.jpg)  repeat ';
-                            carta_2.innerHTML = "";
-                            //////////////////
-                            //despejando los 2 arrays
-                            valor_memoria = [];
-                            memoria_carta_ids = []; 
-                        }
-                        setTimeout(virarAtras, 700);
-                    }
+            if (cartas.length<2 ) {
+                document.getElementById("carta"+id).style.backgroundImage="url("+imagenes[id]+")";
+                if(cartas.length==0)
+                {
+                    cartas.push(id);
                 }
-            } 
+                else if(cartas.length==1)
+                {
+                    cartas.push(id);
+                    if(imagenes[cartas[0]]==imagenes[cartas[1]] )
+                    {
+                        //if(cartas[0]!=cartas[1])
+                        {
+                            intentos++;
+                            pares++;
+                            volteadas.push(cartas[0]);
+                            volteadas.push(cartas[1]);
+                            cartas=[];
+                            if(pares==18)
+                            {
+                                alert("Has ganado. Fin del juego.")
+                                volteadas=[];
+                                chronometer.stop();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        intentos++;
+                        errores++;
+                        function voltear()
+                        {
+                            document.getElementById("carta"+cartas[0]).style.backgroundImage="url(imagenes/0.png)";
+                            document.getElementById("carta"+cartas[1]).style.backgroundImage="url(imagenes/0.png)";
+                            cartas=[];
+                        }
+                        setTimeout(voltear,500);
+                    }
+                    
+
+                }
+            }
         }
+        actualizardatos();
+    }}
+function creararreglo() {
+for(cont=0;cont<imagenes.length;cont+=2)
+{   if(cont>=18)
+    {
+        imagenes[cont]="imagenes/"+(cont+1-18)+".png";
+        imagenes[cont+1]="imagenes/"+(cont+2-18)+".png";
+        
     }
+    else
+    {
+        imagenes[cont]="imagenes/"+(cont+1)+".png";
+        imagenes[cont+1]="imagenes/"+(cont+2)+".png";
+    }
+}
+revolver();}
+function revolver() {
+for (i=0;i<imagenes.length;i++) 
+{
+    j=Math.floor(Math.random()*35)
+    x=imagenes[j];
+    imagenes[j]=imagenes[i];
+    imagenes[i]=x;
+}}
+function comenzar(){
+
+if(jugando==0)
+{
+
+    creararreglo();
+    tablero();
+    i=0;    
+    jugando=1;
+    chronometer.reset();
+    chronometer.start();
+    intentos=0;
+    pares=0;
+    errores=0;
+    actualizardatos();
+}
+else
+{
+    alert("Finalizar primero el juego en curso.");
+}}
+function tablero(){
+    var ht="";
+    for(i=0;i<imagenes.length;i++)
+    {
+        ht+="<div class = 'carta' id='carta"+i+"' onclick='cartaclic("+i+")'></div>";
+    }
+    document.getElementById('tablero').innerHTML=ht;}
+function finalizar(){
+
+if(jugando==1)
+{
+    tablero();
+    chronometer.stop();
+    jugando=0;
+    var car=document.getElementByClassName('carta');
+
+    //for(i=0;i<car.length-1;i++)
+    {
+    //  car[i].style.backgroundImage="url(imagenes/0.png)";
+    }
+
+    volteadas=[];
+    cartas=[];
+}
+else
+{
+    alert("No se esta jugando.");
+}}
+function actualizardatos(){
+var intent=document.getElementById('intentos');
+var par=document.getElementById('paresconseguidos');
+var resta=document.getElementById('paresrestantes');
+var err= document.getElementById('errores');
+
+intent.innerHTML="Conteo: "+intentos;
+par.innerHTML="Conseguidos: "+ pares;
+resta.innerHTML="Restantes: "+ (18-pares);
+err.innerHTML="Conteo: "+ errores;}
+var chronometerInterval = null;
+var chronometer = {
+seconds: 0,
+active: false,
+start: function() {
+    if(!this.active) {
+        chronometerInterval = setInterval(this.update, 1000);
+        this.active = true;
+    }
+},
+stop: function() {
+    if(chronometerInterval != null && this.active) {
+        clearInterval(chronometerInterval);
+        this.active = false;
+    }
+},
+reset: function() {
+    if(this.active) {
+        chronometer.stop();
+    }
+    chronometer.seconds = 0;
+    this.active = false;
+    var d = new Date(chronometer.seconds * 1000);
+    document.getElementById("crono").innerHTML = "Tiempo: "+ d.getMinutes() + ":" + d.getSeconds();
+},
+update: function() {
+    chronometer.seconds++;
+    var date = new Date(chronometer.seconds * 1000);
+    document.getElementById("crono").innerHTML = "Tiempo: "+ date.getMinutes() + ":" + date.getSeconds();
+}};
 
 </script>
